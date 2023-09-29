@@ -1,35 +1,28 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: 'Bug:'
-labels: ''
+title: ''
+labels: ':bug: bug'
 assignees: ''
-
 ---
 
-<!-- Prefer English -->
+#### Make sure
+- [ ] Upgrade the latest [release](https://github.com/fluid-dev/hexo-theme-fluid/releases).
+- [ ] It can be replicated through `hexo clean && hexo s` and cleared browser cache in the localhost.
+- [ ] Not affected by other Hexo plugins
 
-**Description**
+#### Describe the bug
+<!-- A clear and concise description of what the bug is. -->
+<!-- It is better to provide related items of _config.yml -->
 
-[Description of the bug]
+#### To Reproduce
+Steps to reproduce the behavior:
+1. Go to '...', click on '....'
+2. Scroll down to '....'
+3. See error
 
-**Steps to Reproduce**
+<!-- It is better to provide the page link that can be reproduced -->
 
-1. [First Step]
-2. [Second Step]
-3. [and so on...]
-
-**Expected behavior**
-
-[What you expected to happen]
-
-**Screenshots (If Necessary)**
-
-[Screenshots to help explain your problem.]
-
-**Environment (If Necessary)**
-
-- OS: [e.g. Github Pages, Windows 10, macOS 10.13, Linux(CentOS 7.5), iOS 11, Android 8(Pixel 2)]
-- Ruby: [e.g. Github Pages, 2.4.0p0]
-- Jekyll: [e.g. Github Pages, 3.7.3]
-- Browser: [e.g. Chrome, Safari, Edge, Firefox]
+#### Screenshots
+<!-- For front page problems, please provide a screenshot of your browser console -->
+<!-- For hexo command problems, please provide a screenshot of your command console -->
