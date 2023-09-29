@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>INCAR参数的选择</title>
+    <link href="/2023/09/29/Test/"/>
+    <url>/2023/09/29/Test/</url>
+    
+    <content type="html"><![CDATA[<h1 id="INCAR参数的选择"><a href="#INCAR参数的选择" class="headerlink" title="INCAR参数的选择"></a>INCAR参数的选择</h1><h2 id="1、ISTART"><a href="#1、ISTART" class="headerlink" title="1、ISTART"></a>1、ISTART</h2><p>#控制生成初始波函数 0随机 1读取</p><h2 id="2、ICHARG"><a href="#2、ICHARG" class="headerlink" title="2、ICHARG"></a>2、ICHARG</h2><p>#控制生产初始电荷密度 0 读取WAVE生成电荷 1从CHGCAR读取 2通过原子电荷密度叠加方法生成初始的猜测电荷密度</p><p>11 从CHA读取，并在自洽循环中保持不变，适用非自洽循环计算，如电子态密度的计算</p><h2 id="3、ISPIN"><a href="#3、ISPIN" class="headerlink" title="3、ISPIN"></a>3、ISPIN</h2><p>#是否考虑自旋 1：非自旋极化 向上自旋和向下自旋的电子数量相等 适用于非磁性体系 2：自旋极化 磁性体系 如铁磁反铁磁</p><h2 id="4、PREC"><a href="#4、PREC" class="headerlink" title="4、PREC"></a>4、PREC</h2><p>#计算精度的控制</p><h2 id="5、ALGO"><a href="#5、ALGO" class="headerlink" title="5、ALGO"></a>5、ALGO</h2><p>#N ：DAV算法，收敛性好速度慢 V：RMM算法，收敛性差，速度快。 F：综合</p><p>结构偏离稳定结构多，建议用N，接近稳定结构可以用V</p><h2 id="6、NELM"><a href="#6、NELM" class="headerlink" title="6、NELM"></a>6、NELM</h2><p>#自洽循环的最大次数 一般为100</p><p>过渡金属、带真空层、设置了自旋极化的体系，要增加到200、300若依旧不能收敛 调整其他参数</p><h2 id="7、EDIFF-1E-5"><a href="#7、EDIFF-1E-5" class="headerlink" title="7、EDIFF &#x3D; 1E-5"></a>7、EDIFF &#x3D; 1E-5</h2><p>#自洽收敛标准，单位为Ev，两次迭代的能量差相比，一般为-5，-6</p><h2 id="8、ENCUT-250"><a href="#8、ENCUT-250" class="headerlink" title="8、ENCUT &#x3D; 250"></a>8、ENCUT &#x3D; 250</h2><p>#平面波截断能 用多少个平面波去展开波函数 推荐ENMAX的 1.0-1.3倍</p><h2 id="9、IBRION-2-6"><a href="#9、IBRION-2-6" class="headerlink" title="9、IBRION &#x3D; 2 6"></a>9、IBRION &#x3D; 2 6</h2><p>#离子步弛豫算法 0：分子动力学模拟 1：准牛顿算法 2：共轭梯度算法 5：振动频率计算 6；弹性常数计算</p><p>一般为2 结构接近稳定 为1</p><h2 id="10、NSW-100"><a href="#10、NSW-100" class="headerlink" title="10、NSW &#x3D; 100"></a>10、NSW &#x3D; 100</h2><p>#选择1 为有限位移法</p><h2 id="11、NFREE-2"><a href="#11、NFREE-2" class="headerlink" title="11、NFREE &#x3D; 2"></a>11、NFREE &#x3D; 2</h2><p>#有限位移法的方法 两个差分点</p><h2 id="12、POTIM-0-015"><a href="#12、POTIM-0-015" class="headerlink" title="12、POTIM &#x3D; 0.015"></a>12、POTIM &#x3D; 0.015</h2><p>#差分法的步长</p><h2 id="13、ISIF-3"><a href="#13、ISIF-3" class="headerlink" title="13、ISIF &#x3D; 3"></a>13、ISIF &#x3D; 3</h2><p>#写成3 考虑晶胞的畸变对弹性常数的贡献<br>#原子位移 + 晶胞形变 对能量的影响 &#x3D; 弹性常数</p><h2 id="14、EDIFFG-0-1"><a href="#14、EDIFFG-0-1" class="headerlink" title="14、EDIFFG &#x3D; -0.1"></a>14、EDIFFG &#x3D; -0.1</h2><p>#离子步弛豫收敛标准 正值为系统能量变化 负值为原子上残余力，多数用力的收敛标准 三维可以收敛到 -0.01到-0.03 低维可以收敛到-0.03 到 -0.05</p><h2 id="15、ISMEAR-0"><a href="#15、ISMEAR-0" class="headerlink" title="15、ISMEAR &#x3D; 0"></a>15、ISMEAR &#x3D; 0</h2><p>#设置展宽方法决定如何进行电子轨道分数的占据 1（默认） -5 -4 -3 -2 0 N 0为高斯方法 适用于导体、半导体绝缘体或不清楚导电性质的时候用。-5：四面体法 用于半导体和绝缘体</p><p>半导体用 -5（注意k点要大于5） 其他绝大部分用0</p><h2 id="16、SIGAM-0-1"><a href="#16、SIGAM-0-1" class="headerlink" title="16、SIGAM &#x3D; 0.1"></a>16、SIGAM &#x3D; 0.1</h2><p>#展宽宽度与ISMEAR联用 ev 默认为0.2</p><p>#####################</p><h2 id="NSWICHAGE"><a href="#NSWICHAGE" class="headerlink" title="NSWICHAGE"></a>NSWICHAGE</h2><p>最大离子步数&#x2F;分子动力学模拟步数</p><p>#####################</p><h2 id="ISIF"><a href="#ISIF" class="headerlink" title="ISIF"></a>ISIF</h2><p>#3:全弛豫，绝大多数三维结构优化 2：固定体积的弛豫，适用于表面结构优化，微量掺杂体系的优化。 4：固定体积，形状可变的弛豫</p><p>复杂体系可以分步优化，即 2优化离子 6 优化晶胞 3优化离子和晶胞<br>######################</p><h2 id="AMIX"><a href="#AMIX" class="headerlink" title="AMIX"></a>AMIX</h2><p>#设置自洽迭代循环中新旧电荷密度的混合比 一般为0.4 自洽迭代不收敛时可以降低此数值</p><p>#####################</p><h2 id="MAGMOM"><a href="#MAGMOM" class="headerlink" title="MAGMOM"></a>MAGMOM</h2><p>#对于磁性材料设置初始原子磁矩 默认每个原子为1 对于有df轨道的原子需要根据核外电子排布设置相应值 可以设置每个原子的初始磁矩方向 正值为自旋向上 负值为自旋向下</p><p>#####################</p><h2 id="LDA-U"><a href="#LDA-U" class="headerlink" title="LDA+U"></a>LDA+U</h2><p>#电子强关联能 #########</p><p>#####################</p><h2 id="IVDW"><a href="#IVDW" class="headerlink" title="IVDW"></a>IVDW</h2><p>#范德华修正 10：DFT-D2 11：DFT-D3 表面吸附、弱相互作用占体系能量较大比例的体系 ： 分子晶体、层状结构体系</p><h2 id="LUSE-VDW"><a href="#LUSE-VDW" class="headerlink" title="LUSE_VDW"></a>LUSE_VDW</h2><p>#范德华力计算方法 ########将修改DFT内的能量计算</p><p>#####################</p><h2 id="NELECT"><a href="#NELECT" class="headerlink" title="NELECT"></a>NELECT</h2><p>#指定体系总电子数目，默认为POSCAR POTCAR 自动计算价电子数 ############</p><p>#####################</p><h2 id="LWAVE-LCHARG"><a href="#LWAVE-LCHARG" class="headerlink" title="LWAVE&#x2F;LCHARG"></a>LWAVE&#x2F;LCHARG</h2><p>#是否输出波函数和电荷密度 TF</p><p>#####################</p><h2 id="NEDOS"><a href="#NEDOS" class="headerlink" title="NEDOS"></a>NEDOS</h2><p>#态密度点个数</p><p>#####################</p><h2 id="LORBIT"><a href="#LORBIT" class="headerlink" title="LORBIT"></a>LORBIT</h2><p>#总态密度投影 10 ：投影到 SPDF 11:投影到 s 、pypxpz</p><p>#####################</p><h2 id="RWIGSRWIGS"><a href="#RWIGSRWIGS" class="headerlink" title="RWIGSRWIGS"></a>RWIGSRWIGS</h2><p>#控制分态密度强度 原子Wigner-seitz半径</p><p>#####################</p><p>NBANDS # 总能带数 通常不修改 光学性质计算设置为默认的三到四倍数</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Vasp</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2023/09/29/hello-world/"/>
     <url>/2023/09/29/hello-world/</url>
