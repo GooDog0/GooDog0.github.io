@@ -11,6 +11,12 @@
     <content type="html"><![CDATA[<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = mc^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8641em;"></span><span class="mord mathnormal">m</span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>]]></content>
     
     
+    <categories>
+      
+      <category>test</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -24,11 +30,19 @@
   
   <entry>
     <title>INCAR参数的选择</title>
-    <link href="/2023/09/29/Test/"/>
-    <url>/2023/09/29/Test/</url>
+    <link href="/2023/09/29/INCAR/"/>
+    <url>/2023/09/29/INCAR/</url>
     
     <content type="html"><![CDATA[<h1>INCAR参数的选择</h1><h2 id="1、ISTART">1、ISTART</h2><p>#控制生成初始波函数 0随机 1读取</p><h2 id="2、ICHARG">2、ICHARG</h2><p>#控制生产初始电荷密度 0 读取WAVE生成电荷 1从CHGCAR读取 2通过原子电荷密度叠加方法生成初始的猜测电荷密度</p><p>11 从CHA读取，并在自洽循环中保持不变，适用非自洽循环计算，如电子态密度的计算</p><h2 id="3、ISPIN">3、ISPIN</h2><p>#是否考虑自旋 1：非自旋极化 向上自旋和向下自旋的电子数量相等 适用于非磁性体系 2：自旋极化 磁性体系 如铁磁反铁磁</p><h2 id="4、PREC">4、PREC</h2><p>#计算精度的控制</p><h2 id="5、ALGO">5、ALGO</h2><p>#N ：DAV算法，收敛性好速度慢 V：RMM算法，收敛性差，速度快。 F：综合</p><p>结构偏离稳定结构多，建议用N，接近稳定结构可以用V</p><h2 id="6、NELM">6、NELM</h2><p>#自洽循环的最大次数 一般为100</p><p>过渡金属、带真空层、设置了自旋极化的体系，要增加到200、300若依旧不能收敛 调整其他参数</p><h2 id="7、EDIFF-1E-5">7、EDIFF = 1E-5</h2><p>#自洽收敛标准，单位为Ev，两次迭代的能量差相比，一般为-5，-6</p><h2 id="8、ENCUT-250">8、ENCUT = 250</h2><p>#平面波截断能 用多少个平面波去展开波函数 推荐ENMAX的 1.0-1.3倍</p><h2 id="9、IBRION-2-6">9、IBRION = 2 6</h2><p>#离子步弛豫算法 0：分子动力学模拟 1：准牛顿算法 2：共轭梯度算法 5：振动频率计算 6；弹性常数计算</p><p>一般为2 结构接近稳定 为1</p><h2 id="10、NSW-100">10、NSW = 100</h2><p>#选择1 为有限位移法</p><h2 id="11、NFREE-2">11、NFREE = 2</h2><p>#有限位移法的方法 两个差分点</p><h2 id="12、POTIM-0-015">12、POTIM = 0.015</h2><p>#差分法的步长</p><h2 id="13、ISIF-3">13、ISIF = 3</h2><p>#写成3 考虑晶胞的畸变对弹性常数的贡献<br>#原子位移 + 晶胞形变 对能量的影响 = 弹性常数</p><h2 id="14、EDIFFG-0-1">14、EDIFFG = -0.1</h2><p>#离子步弛豫收敛标准 正值为系统能量变化 负值为原子上残余力，多数用力的收敛标准 三维可以收敛到 -0.01到-0.03 低维可以收敛到-0.03 到 -0.05</p><h2 id="15、ISMEAR-0">15、ISMEAR = 0</h2><p>#设置展宽方法决定如何进行电子轨道分数的占据 1（默认） -5 -4 -3 -2 0 N 0为高斯方法 适用于导体、半导体绝缘体或不清楚导电性质的时候用。-5：四面体法 用于半导体和绝缘体</p><p>半导体用 -5（注意k点要大于5） 其他绝大部分用0</p><h2 id="16、SIGAM-0-1">16、SIGAM = 0.1</h2><p>#展宽宽度与ISMEAR联用 ev 默认为0.2</p><p>#####################</p><h2 id="NSWICHAGE">NSWICHAGE</h2><p>最大离子步数/分子动力学模拟步数</p><p>#####################</p><h2 id="ISIF">ISIF</h2><p>#3:全弛豫，绝大多数三维结构优化 2：固定体积的弛豫，适用于表面结构优化，微量掺杂体系的优化。 4：固定体积，形状可变的弛豫</p><p>复杂体系可以分步优化，即 2优化离子 6 优化晶胞 3优化离子和晶胞<br>######################</p><h2 id="AMIX">AMIX</h2><p>#设置自洽迭代循环中新旧电荷密度的混合比 一般为0.4 自洽迭代不收敛时可以降低此数值</p><p>#####################</p><h2 id="MAGMOM">MAGMOM</h2><p>#对于磁性材料设置初始原子磁矩 默认每个原子为1 对于有df轨道的原子需要根据核外电子排布设置相应值 可以设置每个原子的初始磁矩方向 正值为自旋向上 负值为自旋向下</p><p>#####################</p><h2 id="LDA-U">LDA+U</h2><p>#电子强关联能 #########</p><p>#####################</p><h2 id="IVDW">IVDW</h2><p>#范德华修正 10：DFT-D2 11：DFT-D3 表面吸附、弱相互作用占体系能量较大比例的体系 ： 分子晶体、层状结构体系</p><h2 id="LUSE-VDW">LUSE_VDW</h2><p>#范德华力计算方法 ########将修改DFT内的能量计算</p><p>#####################</p><h2 id="NELECT">NELECT</h2><p>#指定体系总电子数目，默认为POSCAR POTCAR 自动计算价电子数 ############</p><p>#####################</p><h2 id="LWAVE-LCHARG">LWAVE/LCHARG</h2><p>#是否输出波函数和电荷密度 TF</p><p>#####################</p><h2 id="NEDOS">NEDOS</h2><p>#态密度点个数</p><p>#####################</p><h2 id="LORBIT">LORBIT</h2><p>#总态密度投影 10 ：投影到 SPDF 11:投影到 s 、pypxpz</p><p>#####################</p><h2 id="RWIGSRWIGS">RWIGSRWIGS</h2><p>#控制分态密度强度 原子Wigner-seitz半径</p><p>#####################</p><p>NBANDS # 总能带数 通常不修改 光学性质计算设置为默认的三到四倍数</p>]]></content>
     
+    
+    <categories>
+      
+      <category>Vasp</category>
+      
+      <category>INCAR</category>
+      
+    </categories>
     
     
     <tags>
