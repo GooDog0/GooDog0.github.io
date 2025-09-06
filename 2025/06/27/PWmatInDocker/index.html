@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/them.png">
+  <link rel="icon" href="/img/them.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="GooDog">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、环境配置 PWmat试用版(docker镜像) PWmat手册 2、输入输出文件 参数文件：etot.input，类似于INCAR 结构文件：atom.config，类似于POSCAR 赝势文件：*.UPF，类似于POTCAR 其他 以PWmat给出的为例 12345#不区分大小写，无顺序4 1 #NODE1*NODE2必须等于在运行时候的并行数，波函数分组*K点分组IN.ATOM &#x3D; ato">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWmatInDocker">
+<meta property="og:url" content="http://example.com/2025/06/27/PWmatInDocker/index.html">
+<meta property="og:site_name" content="GooDog">
+<meta property="og:description" content="1、环境配置 PWmat试用版(docker镜像) PWmat手册 2、输入输出文件 参数文件：etot.input，类似于INCAR 结构文件：atom.config，类似于POSCAR 赝势文件：*.UPF，类似于POTCAR 其他 以PWmat给出的为例 12345#不区分大小写，无顺序4 1 #NODE1*NODE2必须等于在运行时候的并行数，波函数分组*K点分组IN.ATOM &#x3D; ato">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-27T13:43:11.000Z">
+<meta property="article:modified_time" content="2025-06-27T16:19:42.750Z">
+<meta property="article:author" content="GooDog">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  
+  <title>PWmatInDocker - GooDog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/font.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":66,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>GooDog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PWmatInDocker"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        GooDog
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-27 21:43" pubdate>
+          2025年6月27日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PWmatInDocker</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>1、环境配置</h1>
+<p><a target="_blank" rel="noopener" href="https://www.pwmat.com/pwmat-trial-download">PWmat试用版(docker镜像)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.pwmat.com/pwmat-resource/Manual_cn.pdf">PWmat手册</a></p>
+<h1>2、输入输出文件</h1>
+<p>参数文件：etot.input，类似于INCAR</p>
+<p>结构文件：atom.config，类似于POSCAR</p>
+<p>赝势文件：*.UPF，类似于POTCAR</p>
+<p>其他</p>
+<p>以PWmat给出的为例</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment">#不区分大小写，无顺序</span><br>4 1 <span class="hljs-comment">#NODE1*NODE2必须等于在运行时候的并行数，波函数分组*K点分组</span><br>IN.ATOM = atom.config <span class="hljs-comment">#</span><br>IN.PSP1 = Si.NCPP.UPF <span class="hljs-comment">#声明第一个赝势，声明顺序不影响，只需包含结构文件中所有的元素即可。</span><br>JOB = SCF <span class="hljs-comment">#声明计算种类 </span><br></code></pre></td></tr></table></figure>
+<p>SCF：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = SCF<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE #<span class="hljs-number">2</span>.<span class="hljs-number">1</span>.<span class="hljs-number">36</span>控制交换关联泛函，一般默认为PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">50</span> #<span class="hljs-number">2</span>.<span class="hljs-number">1</span>.<span class="hljs-number">16</span>截断能<br><span class="hljs-attribute">MP_N123</span> = <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> #<span class="hljs-number">2</span>.<span class="hljs-number">1</span>.<span class="hljs-number">24</span>类似于KPOINTS,Monkhorst-pack方法生成K点，后三个数目为k点偏移，最后一位数控制对称性，一般只在MD/TDDFT/NAMD/NEB或SPIN = <span class="hljs-number">222</span> 时操作<br></code></pre></td></tr></table></figure>
+<p>NONSCF:</p>
+<p>计算能带结构的时候</p>
+<p>将SCF计算中的势函数OUT.VR复制为IN.VR。</p>
+<p>2.4.1IN.KPT文件？？？？？？（类似于VASP中的<em><a target="_blank" rel="noopener" href="http://KPATH.in">KPATH.in</a></em>，存放高对称点）</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">2 </span># nkpt<br><span class="hljs-symbol">2 </span><span class="hljs-number">1.0000</span> # iflag, a0<br><span class="hljs-number">0.250</span> <span class="hljs-number">0</span>,<span class="hljs-number">250</span> <span class="hljs-number">0.250</span> <span class="hljs-number">0.25</span> # ak1, ak2, ak3, weight<br><span class="hljs-number">0.250</span> <span class="hljs-number">0.250</span> <span class="hljs-number">0.750</span> <span class="hljs-number">0.75</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = NONSCF<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">50</span><br><span class="hljs-attribute">IN</span>.KPT = T #<span class="hljs-number">2</span>.<span class="hljs-number">1</span>.<span class="hljs-number">55</span> 默认关闭，打开时候从文件（注意）读取K点<br><span class="hljs-attribute">IN</span>.VR = T #<span class="hljs-number">2</span>.<span class="hljs-number">1</span>.<span class="hljs-number">50</span> 默认关闭 打开后读取势函数，SPIN = <span class="hljs-number">2</span>自旋体系为两个势函数<br></code></pre></td></tr></table></figure>
+<p>2.4.3中当 JOB = NONSCF 且设置 IN.NONSCF = T 时，将从 ‘IN.NONSCF’ 文件中读取 非自洽计算需要的其他可选参数</p>
+<p>注意：(警告): 当使用杂化泛函进行非自洽计算时，还需要上一步 SCF 计算生成的波函 数 ‘OUT.HSEWR(i)’ 文件。</p>
+<p>DOS：</p>
+<p>DOS 计算必须输入<strong>波函数和本征能量</strong>，通常来自之前的 SCF 或 NONSCF 计算， 需要将 ‘OUT.WG’ 文件复制为 ‘IN.WG’ 文件，并在 etot.input 中设置 IN.WG = T。还 需要从之前的计算中复制 ‘OUT.EIGEN’ 文件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = DOS<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">50</span><br><span class="hljs-attribute">MP_N123</span> = <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> #与自洽或非自洽时保持一致<br><span class="hljs-attribute">IN</span>.WG = T<br></code></pre></td></tr></table></figure>
+<p>K点插值法，见手册P6。</p>
+<p>MOMENT：???</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = MOMENT<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">50</span><br><span class="hljs-attribute">MP_N123</span> = <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> #与自洽或非自洽时保持一致<br><span class="hljs-attribute">IN</span>.WG = T<br></code></pre></td></tr></table></figure>
+<p>RELAX:</p>
+<p>类似于ISIF = 2</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = RELAX<br><span class="hljs-attribute">RELAX_DETAIL</span> = <span class="hljs-number">1</span> <span class="hljs-number">100</span> <span class="hljs-number">0</span>.<span class="hljs-number">01</span> #弛豫方法；最大离子步；受力标准；是否进行晶格优化；晶格收敛标准；沿搜索方向的能量收敛标准？？p15<br><span class="hljs-attribute">ACCURACY</span> = High<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">50</span><br><span class="hljs-attribute">MP_N123</span> = <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p>类似于ISIF = 3</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = RELAX<br><span class="hljs-attribute">RELAX_DETAIL</span> = <span class="hljs-number">1</span> <span class="hljs-number">100</span> <span class="hljs-number">0</span>.<span class="hljs-number">01</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span>.<span class="hljs-number">01</span><br><span class="hljs-attribute">ACCURACY</span> = High<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">70</span><br><span class="hljs-attribute">MP_N123</span> = <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">9</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p>杂化泛函略</p>
+<p>EGGFIT略</p>
+<p>MD</p>
+<p>与 MD 相关的关键词（部分）: MD_DETAILS, IN.MDOPT, IN.EXT_FORCE</p>
+<p>注意！MD_DETAILS是没有默认值的。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">4</span> <span class="hljs-number">1</span><br><span class="hljs-attribute">IN</span>.ATOM = atom.config<br><span class="hljs-attribute">JOB</span> = MD<br><span class="hljs-attribute">MD_DETAIL</span> = <span class="hljs-number">1</span> <span class="hljs-number">1000</span> <span class="hljs-number">1</span> <span class="hljs-number">300</span> <span class="hljs-number">300</span> #MD方法；计算总步数；步长（fs）；初始温度；末态温度<br><span class="hljs-attribute">IN</span>.PSP1 = Si.SG15.PBE.UPF<br><span class="hljs-attribute">XCFUNCTIONAL</span> = PBE<br><span class="hljs-attribute">Ecut</span> = <span class="hljs-number">50</span><br><span class="hljs-attribute">MP_N123</span> = <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+<p>TDDFT</p>
+<p>附录A： 注意, JOB=TDDFT 需要 TDDFT_DETAIL, MD_DETAIL。</p>
+<p>TDDFT_DETAIL = m1 m2 mstate</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PWmatInDocker</div>
+      <div>http://example.com/2025/06/27/PWmatInDocker/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GooDog</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/30/deepseek%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/" title="deepseek本地部署">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">deepseek本地部署</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/25/%E7%AC%AC%E4%B8%80%E6%80%A7%E5%8E%9F%E7%90%86%E7%83%AD%E7%94%B5%E6%80%A7%E8%B4%A8%E7%9A%84%E8%AE%A1%E7%AE%97%E6%B5%81%E7%A8%8B/" title="第一性原理热电性质的计算流程">
+                        <span class="hidden-mobile">第一性原理热电性质的计算流程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
