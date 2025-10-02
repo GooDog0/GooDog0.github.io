@@ -16,11 +16,15 @@
   <meta name="author" content="GooDog">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+    <meta name="description" content="1、QE准备 计算模型 赝势 输入文件与参数 &amp;CONTROL calculation &#x3D; ‘vc-relax’ pseudo dir &#x3D; ‘.’ &amp;SYSTEM ibrav &#x3D; 2 #对称性 A &#x3D; 3.567 #晶格常数 nat &#x3D; 2 #原子个数 ntyp &#x3D; 1 #原子 ecutwfc &#x3D; 40. 0 #平面波截断能 &amp;ELECTRONS  # 电子自洽循环 ele">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QE学习">
+<meta property="og:url" content="http://example.com/2025/09/26/QE%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="GooDog">
+<meta property="og:description" content="1、QE准备 计算模型 赝势 输入文件与参数 &amp;CONTROL calculation &#x3D; ‘vc-relax’ pseudo dir &#x3D; ‘.’ &amp;SYSTEM ibrav &#x3D; 2 #对称性 A &#x3D; 3.567 #晶格常数 nat &#x3D; 2 #原子个数 ntyp &#x3D; 1 #原子 ecutwfc &#x3D; 40. 0 #平面波截断能 &amp;ELECTRONS  # 电子自洽循环 ele">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-26T10:45:57.000Z">
+<meta property="article:modified_time" content="2025-09-26T13:06:33.841Z">
 <meta property="article:author" content="GooDog">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -30,11 +34,17 @@
   
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
   
-  <title>归档 - GooDog</title>
+  <title>QE学习 - GooDog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -115,7 +125,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -221,9 +231,54 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="归档"></span>
+            <span id="subtitle" data-typed-text="QE学习"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        GooDog
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-26 18:45" pubdate>
+          2025年9月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          441 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -239,58 +294,192 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 17 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2023</p>
-    
-    <a href="/2023/10/12/%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99%E5%8F%8A%E5%85%B6%E4%BB%8B%E7%BB%8D/" class="list-group-item list-group-item-action">
-      <time>10-12</time>
-      <div class="list-group-item-title">一些网站及其介绍</div>
-    </a>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">QE学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>1、QE准备</h1>
+<p>计算模型</p>
+<p>赝势</p>
+<p>输入文件与参数</p>
+<p>&amp;CONTROL</p>
+<p>calculation = ‘vc-relax’</p>
+<p>pseudo dir = ‘.’</p>
+<p>&amp;SYSTEM</p>
+<p>ibrav = 2 #对称性</p>
+<p>A = 3.567 #晶格常数</p>
+<p>nat = 2 #原子个数</p>
+<p>ntyp = 1 #原子</p>
+<p>ecutwfc = 40. 0 #平面波截断能</p>
+<p>&amp;ELECTRONS  # 电子自洽循环</p>
+<p>electron maxstep = 100 #最大步数</p>
+<p>conv thr = 1D-8</p>
+<p>diagonalization = ‘david’ #算法</p>
+<p>mixing mode = ‘plain’  #电荷密度的混合参数</p>
+<p>mixing beta = 0.7</p>
+<p>&amp;IONS #离子迭代 方法</p>
+<p>ion dynamics =‘bfgs’</p>
+<p>&amp;CELL #晶胞优化 方法</p>
+<p>cell dynamics = ‘bfgs’</p>
+<p>cell dofree = ‘all’</p>
+<p>ATOMIC SPECIES #</p>
+<p>C 12.011 名称</p>
+<p>ATOMIC POSITIONS crystal #原子坐标</p>
+<h1>2 结构优化 自洽计算</h1>
+<p>vc-relax</p>
+<p>etot_conv_thr</p>
+<p>forc_conv_thr</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-    
-    <a href="/2023/10/05/MarkDown%E7%9A%84%E6%95%B0%E5%AD%A6%E4%BD%BF%E7%94%A8/" class="list-group-item list-group-item-action">
-      <time>10-05</time>
-      <div class="list-group-item-title">MarkDown的数学使用</div>
-    </a>
   
-    
-    <a href="/2023/10/02/CHG%E7%94%B5%E8%8D%B7/" class="list-group-item list-group-item-action">
-      <time>10-02</time>
-      <div class="list-group-item-title">CHG电荷</div>
-    </a>
+</div>
+
+
+              
   
-    
-    <a href="/2023/09/29/INCAR/" class="list-group-item list-group-item-action">
-      <time>09-29</time>
-      <div class="list-group-item-title">INCAR参数的选择</div>
-    </a>
-  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>QE学习</div>
+      <div>http://example.com/2025/09/26/QE学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>GooDog</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/30/DOS%E3%80%81Bands%E8%AE%A1%E7%AE%97%E4%BB%A5Si%E4%B8%BA%E4%BE%8B/" title="DOS、Bands计算以Si为例">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DOS、Bands计算以Si为例</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/12/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0/" title="注意力机制学习">
+                        <span class="hidden-mobile">注意力机制学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
     
@@ -408,6 +597,99 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 
